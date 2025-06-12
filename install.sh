@@ -1,10 +1,13 @@
-#!/bin/nash
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+   echo "You must run this script as a superuser."
+   exit 1
+fi
 
 cd $HOME
 mkdir opensource
 cd ./opensource
-
-su
 
 ##################################################
 # SOLVING DEPENDENCIES
@@ -150,5 +153,3 @@ make
 make install
 make veryclean
 cd ..
-
-
